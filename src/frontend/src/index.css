@@ -1,0 +1,121 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Satoshi";
+  src: url("/assets/fonts/Satoshi-Variable.woff2") format("woff2");
+  font-weight: 300 700;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+    /* SpyView dark theme — always dark */
+    --background: 0.1 0.005 240;
+    --foreground: 0.93 0.01 240;
+    --card: 0.18 0.008 240;
+    --card-foreground: 0.93 0.01 240;
+    --popover: 0.18 0.008 240;
+    --popover-foreground: 0.93 0.01 240;
+    --primary: 0.72 0.12 192;
+    --primary-foreground: 0.1 0.005 240;
+    --secondary: 0.24 0.01 240;
+    --secondary-foreground: 0.93 0.01 240;
+    --muted: 0.2 0.008 240;
+    --muted-foreground: 0.67 0.015 240;
+    --accent: 0.72 0.12 192;
+    --accent-foreground: 0.1 0.005 240;
+    --destructive: 0.62 0.22 25;
+    --destructive-foreground: 0.93 0.01 240;
+    --border: 0.24 0.01 240;
+    --input: 0.22 0.008 240;
+    --ring: 0.72 0.12 192;
+    --chart-1: 0.72 0.12 192;
+    --chart-2: 0.75 0.14 145;
+    --chart-3: 0.78 0.18 60;
+    --chart-4: 0.62 0.22 25;
+    --chart-5: 0.67 0.015 240;
+    --sidebar: 0.14 0.008 240;
+    --sidebar-foreground: 0.93 0.01 240;
+    --sidebar-primary: 0.72 0.12 192;
+    --sidebar-primary-foreground: 0.1 0.005 240;
+    --sidebar-accent: 0.2 0.008 240;
+    --sidebar-accent-foreground: 0.93 0.01 240;
+    --sidebar-border: 0.24 0.01 240;
+    --sidebar-ring: 0.72 0.12 192;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-family: "Satoshi", "Inter", sans-serif;
+  }
+}
+
+/* Waveform animation */
+@keyframes wave-bar {
+  0%,
+  100% {
+    transform: scaleY(0.2);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+.wave-bar {
+  display: inline-block;
+  width: 4px;
+  border-radius: 2px;
+  transform-origin: bottom;
+  animation: wave-bar 1s ease-in-out infinite;
+}
+
+/* Pulse dot */
+@keyframes pulse-red {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+.pulse-red {
+  animation: pulse-red 1.2s ease-in-out infinite;
+}
+
+/* Scan line effect on screen mirror */
+@keyframes scan {
+  0% {
+    top: 0%;
+  }
+  100% {
+    top: 100%;
+  }
+}
+
+.scan-line {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    oklch(0.72 0.12 192 / 0.3),
+    transparent
+  );
+  animation: scan 3s linear infinite;
+  pointer-events: none;
+}
